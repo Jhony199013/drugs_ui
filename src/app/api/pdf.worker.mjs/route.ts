@@ -1,35 +1,13 @@
 import { readFile } from 'fs/promises'
-
-export const runtime = 'nodejs'
+import { createRequire } from 'module'
 
 export async function GET() {
   try {
-    // В некоторых версиях есть только не-минимизированный файл и/или legacy-ветка
-    const candidates = [
-      'pdfjs-dist/build/pdf.worker.mjs',
-      'pdfjs-dist/build/pdf.worker.min.mjs',
-      'pdfjs-dist/legacy/build/pdf.worker.mjs',
-      'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
-    ] as const
+    const require = createRequire(import.meta.url)
+    const workerPath = require.resolve('pdfjs-dist/build/pdf.worker.min.mjs')
+    const code = await readFile(workerPath)
 
-    let resolvedPath: string | null = null
-    for (const candidate of candidates) {
-      try {
-        // require.resolve доступен в Node.js рантайме
-        resolvedPath = require.resolve(candidate)
-        break
-      } catch {
-        // пробуем следующий
-      }
-    }
-
-    if (!resolvedPath) {
-      return new Response('Worker mjs not found', { status: 500 })
-    }
-
-    const code = await readFile(resolvedPath)
-
-    // Преобразуем Buffer → ArrayBuffer с явным приведением типа
+    // ✅ Преобразуем Buffer → ArrayBuffer с явным приведением типа
     const arrayBuffer = code.buffer.slice(
       code.byteOffset,
       code.byteOffset + code.byteLength
@@ -37,7 +15,7 @@ export async function GET() {
 
     return new Response(arrayBuffer, {
       headers: {
-        'Content-Type': 'application/javascript; charset=utf-8',
+        'Content-Type': 'text/javascript; charset=utf-8',
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     })
