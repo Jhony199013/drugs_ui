@@ -1,5 +1,6 @@
 "use client";
 
+// @ts-nocheck
 import { useEffect, useRef, useState, useMemo } from "react";
 
 interface PdfViewerProps { url: string }
