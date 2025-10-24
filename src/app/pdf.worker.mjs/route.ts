@@ -1,18 +1,23 @@
 import { readFile } from 'fs/promises'
 
 export async function GET() {
-  const workerPath = require.resolve('pdfjs-dist/build/pdf.worker.min.mjs')
-  const code = await readFile(workerPath)
+  try {
+    const workerPath = require.resolve('pdfjs-dist/build/pdf.worker.min.mjs')
+    const code = await readFile(workerPath)
 
-  const arrayBuffer = code.buffer.slice(
-    code.byteOffset,
-    code.byteOffset + code.byteLength
-  )
+    // ✅ Преобразуем Buffer → ArrayBuffer с явным приведением типа
+    const arrayBuffer = code.buffer.slice(
+      code.byteOffset,
+      code.byteOffset + code.byteLength
+    ) as ArrayBuffer
 
-  return new Response(arrayBuffer as BodyInit, {
-    headers: {
-      'Content-Type': 'text/javascript; charset=utf-8',
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    },
-  })
+    return new Response(arrayBuffer, {
+      headers: {
+        'Content-Type': 'text/javascript; charset=utf-8',
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    })
+  } catch (e) {
+    return new Response('Worker mjs not found', { status: 500 })
+  }
 }
