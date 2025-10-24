@@ -18,8 +18,8 @@ export default function PdfViewer({ url }: PdfViewerProps) {
     let cancelled = false
     ;(async () => {
       const mod = await import("react-pdf")
-      // Используем CDN worker для совместимости версий
-      mod.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.js`
+      // Используем API route для worker
+      mod.pdfjs.GlobalWorkerOptions.workerSrc = `/api/pdf.worker.mjs`
       if (!cancelled) {
         setDocument(() => mod.Document)
         setPage(() => mod.Page)
