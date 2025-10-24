@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useEffect, useRef, useState, useMemo } from "react";
@@ -20,7 +19,7 @@ export default function PdfViewer({ url }: PdfViewerProps) {
     ;(async () => {
       const mod = await import("react-pdf")
       // предпочтительно ESM worker (для современных браузеров)
-      mod.pdfjs.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+      mod.pdfjs.GlobalWorkerOptions.workerSrc = `/pdf.worker.mjs`
       if (!cancelled) {
         setDocument(() => mod.Document)
         setPage(() => mod.Page)
