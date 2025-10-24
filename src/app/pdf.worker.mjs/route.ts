@@ -4,7 +4,6 @@ export async function GET() {
   const workerPath = require.resolve('pdfjs-dist/build/pdf.worker.min.mjs')
   const code = await readFile(workerPath)
 
-  // ✅ Преобразуем Node.js Buffer в ArrayBuffer (универсально)
   const arrayBuffer = code.buffer.slice(
     code.byteOffset,
     code.byteOffset + code.byteLength
@@ -17,5 +16,3 @@ export async function GET() {
     },
   })
 }
-
-
