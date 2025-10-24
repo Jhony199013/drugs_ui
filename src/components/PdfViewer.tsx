@@ -65,7 +65,7 @@ export default function PdfViewer({ url }: PdfViewerProps) {
         <button onClick={() => setScale(1)} className="ml-2 px-3 py-1.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50">100%</button>
         <button onClick={() => setScale(0.5)} className="px-3 py-1.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50">50%</button>
       </div>
-      <Document file={file} onLoadSuccess={({ numPages }: { numPages: number }) => setNumPages(numPages)} className="w-full flex flex-col items-center" loading={
+      <Document file={file} onLoadSuccess={(info: { numPages: number }) => setNumPages(info.numPages)} className="w-full flex flex-col items-center" loading={
         <div className="flex items-center justify-center w-full py-8">
           <div className="flex flex-col items-center gap-3">
             <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent" />
