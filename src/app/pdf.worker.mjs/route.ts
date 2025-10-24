@@ -10,7 +10,7 @@ export async function GET() {
     code.byteOffset + code.byteLength
   )
 
-  return new Response(arrayBuffer, {
+  return new Response(arrayBuffer as BodyInit, {
     headers: {
       'Content-Type': 'text/javascript; charset=utf-8',
       'Cache-Control': 'public, max-age=31536000, immutable',
