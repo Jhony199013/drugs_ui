@@ -1,6 +1,8 @@
 import { readFile } from 'fs/promises'
 import { createRequire } from 'module'
 
+export const runtime = 'nodejs'
+
 export async function GET() {
   try {
     const require = createRequire(import.meta.url)
