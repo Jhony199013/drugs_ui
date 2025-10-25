@@ -34,7 +34,7 @@ export interface Drug {
   ci_endocrine_disorders?: string
   ci_bronchial_asthma?: string
   ci_seizures_epilepsy?: string
-  ci_gastrointestinal_disease?: string
+  ci_gastrointestinal_diseases?: string
   ci_liver_diseases?: string
   ci_hepatic_failure?: string
   ci_kidney_diseases?: string
