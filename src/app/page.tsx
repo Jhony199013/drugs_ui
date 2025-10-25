@@ -215,9 +215,9 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 flex-col md:flex-row">
         {/* Left Sidebar */}
-        <div className="w-1/4 bg-gray-100 p-6 flex flex-col">
+        <div className="w-full md:w-1/3 lg:w-1/4 bg-gray-100 p-4 md:p-6 flex flex-col">
           <div className="space-y-4">
             <DrugSearchInput
               value={drug1}
@@ -234,25 +234,25 @@ export default function Home() {
             />
           </div>
 
-          <div className="mt-6 flex gap-3 justify-start">
-            <button
-              onClick={handleCalculate}
-              disabled={loading || polling}
-              className="bg-primary text-white py-3 px-6 rounded-md hover:bg-primary/90 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
-            >
-              {loading ? "Отправка..." : "Рассчитать"}
-            </button>
-            <button
-              onClick={handleClear}
-              className="bg-gray-300 text-gray-700 py-3 px-6 rounded-md hover:bg-gray-400 transition-colors font-medium"
-            >
-              Очистить
-            </button>
-          </div>
+            <div className="mt-6 flex flex-wrap gap-3 justify-start">
+              <button
+                onClick={handleCalculate}
+                disabled={loading || polling}
+                className="bg-primary text-white py-3 px-6 rounded-md hover:bg-primary/90 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed w-full sm:w-auto min-w-[140px]"
+              >
+                {loading ? "Отправка..." : "Рассчитать"}
+              </button>
+              <button
+                onClick={handleClear}
+                className="bg-gray-300 text-gray-700 py-3 px-6 rounded-md hover:bg-gray-400 transition-colors font-medium w-full sm:w-auto min-w-[140px]"
+              >
+                Очистить
+              </button>
+            </div>
         </div>
 
         {/* Right Content */}
-        <div className="flex-1 bg-white p-8">
+        <div className="flex-1 bg-white p-4 md:p-8">
           {selectedDrug1 && selectedDrug2 && showContraindications ? (
             <div className="space-y-6">
               {/* Карточки препаратов */}

@@ -86,14 +86,14 @@ export default function DrugCard({ drug, position }: DrugCardProps) {
   // PDF viewer управляет загрузкой внутри себя
 
   return (
-    <div className={`bg-white border border-gray-200 rounded-lg p-4 shadow-sm ${
+    <div className={`bg-white border border-gray-200 rounded-lg p-3 md:p-4 shadow-sm ${
       position === "top" ? "mb-4" : ""
     }`}>
       {/* Заголовок с кнопками */}
-      <div className="flex items-start justify-between mb-2">
-        <div className="flex-1">
-          <span className="text-base font-bold text-gray-600 whitespace-nowrap">Торговое название: </span>
-          <span className="text-gray-900 font-medium whitespace-nowrap">{drug.commercialName}</span>
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+        <div className="flex-1 min-w-0">
+          <span className="text-base font-bold text-gray-600">Торговое название: </span>
+          <span className="text-gray-900 font-medium break-words">{drug.commercialName}</span>
         </div>
         <div className="flex gap-2">
           {drug.url && (
@@ -128,13 +128,13 @@ export default function DrugCard({ drug, position }: DrugCardProps) {
       <div className="space-y-1 mb-3">
         
         <div>
-          <span className="text-base font-bold text-gray-600 whitespace-nowrap">МНН: </span>
-          <span className="text-gray-900 whitespace-nowrap">{drug.mnnName}</span>
+          <span className="text-base font-bold text-gray-600">МНН: </span>
+          <span className="text-gray-900 break-words">{drug.mnnName}</span>
         </div>
         
         <div>
-          <span className="text-base font-bold text-gray-600 whitespace-nowrap">Действующее вещество: </span>
-          <span className="text-gray-900 whitespace-nowrap">{drug.active_Substance}</span>
+          <span className="text-base font-bold text-gray-600">Действующее вещество: </span>
+          <span className="text-gray-900 break-words">{drug.active_Substance}</span>
         </div>
         
         {/* Дополнительная информация */}
@@ -142,36 +142,36 @@ export default function DrugCard({ drug, position }: DrugCardProps) {
           <div className="mt-2 space-y-1 text-sm text-gray-700">
             {drug.owner && (
               <div>
-                <span className="text-base font-bold text-gray-600 whitespace-nowrap">Владелец: </span>
-                <span className="text-gray-900 whitespace-nowrap">{drug.owner}</span>
+                <span className="text-base font-bold text-gray-600">Владелец: </span>
+                <span className="text-gray-900 break-words">{drug.owner}</span>
               </div>
             )}
             
             {drug.pharmacotherapeuticGroups && (
               <div>
-                <span className="text-base font-bold text-gray-600 whitespace-nowrap">Фармакотерапевтическая группа: </span>
-                <span className="text-gray-900 whitespace-nowrap">{drug.pharmacotherapeuticGroups}</span>
+                <span className="text-base font-bold text-gray-600">Фармакотерапевтическая группа: </span>
+                <span className="text-gray-900 break-words">{drug.pharmacotherapeuticGroups}</span>
               </div>
             )}
             
             {drug.siteAddresses && (
               <div>
-                <span className="text-base font-bold text-gray-600 whitespace-nowrap">Адрес: </span>
-                <span className="text-gray-900 whitespace-nowrap">{drug.siteAddresses}</span>
+                <span className="text-base font-bold text-gray-600">Адрес: </span>
+                <span className="text-gray-900 break-words">{drug.siteAddresses}</span>
               </div>
             )}
             
             {drug.ownersCountry && (
               <div>
-                <span className="text-base font-bold text-gray-600 whitespace-nowrap">Страна: </span>
-                <span className="text-gray-900 whitespace-nowrap">{drug.ownersCountry}</span>
+                <span className="text-base font-bold text-gray-600">Страна: </span>
+                <span className="text-gray-900 break-words">{drug.ownersCountry}</span>
               </div>
             )}
             
             {drug.ruNumber && (
               <div>
-                <span className="text-base font-bold text-gray-600 whitespace-nowrap">Номер регистрационного удостоверения: </span>
-                <span className="text-gray-900 whitespace-nowrap">{drug.ruNumber}</span>
+                <span className="text-base font-bold text-gray-600">Номер регистрационного удостоверения: </span>
+                <span className="text-gray-900 break-words">{drug.ruNumber}</span>
               </div>
             )}
           </div>
@@ -203,9 +203,9 @@ export default function DrugCard({ drug, position }: DrugCardProps) {
                 <Image
                   src={`/icon_сontraindicated/${item.icon}`}
                   alt={item.description}
-                  width={64}
-                  height={64}
-                  className="mb-1"
+                  width={56}
+                  height={56}
+                  className="mb-1 sm:w-[64px] sm:h-[64px]"
                 />
                 <span className="text-xs text-center text-gray-700 whitespace-pre-line">
                   {item.description}
@@ -219,9 +219,9 @@ export default function DrugCard({ drug, position }: DrugCardProps) {
                 <Image
                   src={`/icon_caution/${item.icon}`}
                   alt={item.description}
-                  width={64}
-                  height={64}
-                  className="mb-1"
+                  width={56}
+                  height={56}
+                  className="mb-1 sm:w-[64px] sm:h-[64px]"
                 />
                 <span className="text-xs text-center text-gray-700 whitespace-pre-line">
                   {item.description}
@@ -234,8 +234,8 @@ export default function DrugCard({ drug, position }: DrugCardProps) {
 
       {/* Попап с инструкцией */}
       {showInstruction && drug.url && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full h-[80vh] flex flex-col">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-full sm:max-w-4xl h-[85vh] sm:h-[80vh] flex flex-col">
             {/* Заголовок попапа */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900">
