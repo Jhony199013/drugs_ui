@@ -27,7 +27,7 @@ const contraindicationIcons: Record<string, { icon: string; description: string 
   ci_endocrine_disorders: { icon: "endocrine_disorders.png", description: "Эндокринные\nзаболевания" },
   ci_bronchial_asthma: { icon: "bronchial_asthma.png", description: "Бронхиальная\nастма" },
   ci_seizures_epilepsy: { icon: "seizures_epilepsy.png", description: "Судороги /\nЭпилепсия" },
-  ci_gastrointestinal_diseases: { icon: "gastrointestinal_diseases.png", description: "Заболевания\nЖКТ" },
+  ci_gastrointestinal_diseases: { icon: "gastrointestinal_diseases.png", description: "Заболевания\nЖК" },
   ci_liver_diseases: { icon: "liver_diseases.png", description: "Заболевания\nпечени" },
   ci_hepatic_failure: { icon: "liver_diseases.png", description: "Печёночная\nнедостаточность" },
   ci_kidney_diseases: { icon: "kidney_diseases.png", description: "Заболевания\nпочек" },
